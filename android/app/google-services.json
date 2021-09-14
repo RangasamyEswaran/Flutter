@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "518674543165",
+    "project_id": "cording-3d550",
+    "storage_bucket": "cording-3d550.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518674543165:android:a824d24dff714928343054",
+        "android_client_info": {
+          "package_name": "com.example.cording"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518674543165-1dcvu1d8hpat9vdb3dcqfm10lkoqajek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCERm0AjXw234gJniZ-r1tJBSdYitVAjec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518674543165-1dcvu1d8hpat9vdb3dcqfm10lkoqajek.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
