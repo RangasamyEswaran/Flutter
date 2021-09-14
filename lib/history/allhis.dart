@@ -43,6 +43,7 @@ class _AllhisState extends State<Allhis> {
             
             return Card(
               
+              
               child: ListTile(
                 onTap: () {
                   // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Trensactiondetails(tranceModel: transation[index],),));
