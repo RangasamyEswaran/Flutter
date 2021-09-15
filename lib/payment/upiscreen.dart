@@ -138,21 +138,9 @@ final LocalAuthentication auth = LocalAuthentication();
         () => _authorized = authenticated ? 'Authorized' : 'Not Authorized');
         if(authenticated){
           Navigator.push(context, MaterialPageRoute(builder: (context) => Loading(amount: widget.amount,),));
-          flutterLocalNotificationsPlugin.show(0, 
-          "${widget.amount}",
-          "Amount Send Successfully",
-          NotificationDetails(
-            android: AndroidNotificationDetails(
-              channel.id, 
-              channel.name, 
-              channel.description,
-              playSound: true,
-              importance: Importance.high,
-              icon: '@mipmap/ic_launcher',
-            )
-          )
-          );
+          
         }
+        
   }
 
   @override
@@ -233,6 +221,20 @@ final LocalAuthentication auth = LocalAuthentication();
         backgroundColor: Colors.deepPurpleAccent[700],
         onCodeSuccess: (success){
           Navigator.push(context, MaterialPageRoute(builder: (context) => Loading(amount: widget.amount,),));
+          flutterLocalNotificationsPlugin.show(0, 
+          "${widget.amount}",
+          "Amount Send Successfully",
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id, 
+              channel.name, 
+              channel.description,
+              playSound: true,
+              importance: Importance.high,
+              icon: '@mipmap/ic_launcher',
+            )
+          )
+          );
         },
         onCodeFail: (fail) {
           AlertDialog(
