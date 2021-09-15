@@ -3,6 +3,7 @@ import 'package:cording/finished/finished.dart';
 import 'package:cording/loading/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:pin_code_view/pin_code_view.dart';
 
@@ -21,6 +22,14 @@ class Pinscreen extends StatefulWidget {
 class _PinscreenState extends State<Pinscreen> {
 
 final LocalAuthentication auth = LocalAuthentication();
+
+static const AndroidNotificationChannel channel = AndroidNotificationChannel(
+  'High_importance_Chennal', 
+  'High Importance notification', 
+  'This Channel is used for importan',
+  importance: Importance.high,
+  playSound: true,
+  );
  
   bool? _canCheckBiometrics;
   List<BiometricType>? _availableBiometrics;
