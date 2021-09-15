@@ -1,6 +1,8 @@
 // ignore: unused_import
 import 'package:cording/finished/finished.dart';
 import 'package:cording/loading/loading.dart';
+import 'package:cording/main.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -23,22 +25,61 @@ class _PinscreenState extends State<Pinscreen> {
 
 final LocalAuthentication auth = LocalAuthentication();
 
-static const AndroidNotificationChannel channel = AndroidNotificationChannel(
-  'High_importance_Chennal', 
-  'High Importance notification', 
-  'This Channel is used for importan',
-  importance: Importance.high,
-  playSound: true,
-  );
+
  
+
   bool? _canCheckBiometrics;
   List<BiometricType>? _availableBiometrics;
   String _authorized = 'Not Authorized';
   bool _isAuthenticating = false;
 
   @override
+  void initState() { 
+    super.initState();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message){
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if(notification != null && android != null){
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id, 
+              channel.name, 
+              channel.description,
+              icon: '@mipmap/ic_launcher',
+              playSound: true
+              )
+          )
+        );
+      }
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if(notification != null && android != null){
+        showDialog(
+          context: context, 
+          builder: (_){
+            return AlertDialog(
+              title: Text(notification.title.toString()),
+              content: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(notification.body.toString())
+                  ],
+                ),
+              ),
+            );
+          });
+      }
+     });
+  }
 
-
+  @override
   Future<void> _checkBiometrics() async {
     late bool canCheckBiometrics;
     try {
@@ -97,6 +138,20 @@ static const AndroidNotificationChannel channel = AndroidNotificationChannel(
         () => _authorized = authenticated ? 'Authorized' : 'Not Authorized');
         if(authenticated){
           Navigator.push(context, MaterialPageRoute(builder: (context) => Loading(amount: widget.amount,),));
+          flutterLocalNotificationsPlugin.show(0, 
+          "${widget.amount}",
+          "Amount Send Successfully",
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id, 
+              channel.name, 
+              channel.description,
+              playSound: true,
+              importance: Importance.high,
+              icon: '@mipmap/ic_launcher',
+            )
+          )
+          );
         }
   }
 

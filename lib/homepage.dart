@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                  height: 200,
                  
                  
-                 duration: const Duration(seconds: 2),
+                 duration: const Duration(seconds: 4),
                   curve: Curves.fastOutSlowIn,
                  child: CarouselSlider.builder(
                    options: CarouselOptions(
@@ -172,13 +172,8 @@ class _HomePageState extends State<HomePage> {
                        current = index; 
                        }); 
                      },
-  
                    ),
-                  //  scrollDirection: Axis.horizontal,
-                  //  padding: EdgeInsets.only(left: 16, right: 6),
                    itemCount: cards.length,
-                  //  physics: BouncingScrollPhysics(),
-                   
                    itemBuilder: (context, index, realIndex){
                      return Container(
                        
