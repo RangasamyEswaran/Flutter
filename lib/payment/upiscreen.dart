@@ -222,7 +222,7 @@ final LocalAuthentication auth = LocalAuthentication();
         onCodeSuccess: (success){
           Navigator.push(context, MaterialPageRoute(builder: (context) => Loading(amount: widget.amount,),));
           flutterLocalNotificationsPlugin.show(0, 
-          "${widget.amount}",
+          "${widget.amount}.00",
           "Amount Send Successfully",
           NotificationDetails(
             android: AndroidNotificationDetails(

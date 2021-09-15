@@ -412,6 +412,7 @@ class _OwnTransferState extends State<OwnTransfer> {
               ),
               controller: _Amount,
               keyboardType: TextInputType.number,
+              
               decoration: InputDecoration(
                 
               ),
@@ -428,23 +429,10 @@ class _OwnTransferState extends State<OwnTransfer> {
                 child: InkWell(
                   
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Confirmation(amount: _Amount.text,cardModel: cards[index]),));
-                    // push(context, MaterialPageRoute(builder: (context) => Confirmation(),));
-                    // Navigator.push(context, PageRouteBuilder(
-                    //   transitionDuration: Duration(milliseconds: 500),
-                    //   transitionsBuilder: (BuildContext contect, Animation<double> animation, Animation<double> secAnimaton, Widget child){
-                    //     animation = CurvedAnimation(parent: animation, curve: Curves.easeInBack);
-                    //     return ScaleTransition(
-                    //       alignment: Alignment.centerRight,
-                    //       scale: animation,
-                    //     child: child,
-                    //     );
-                    //   },
-    
-                    //   pageBuilder: (BuildContext contect, Animation<double> animation, Animation<double> secAnimaton){
-                    //     return Confirmation(amount: _Amount.text,cardModel: cards[index],);
-                    //   }
-                    //   ));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => 
+                        Confirmation(amount: _Amount.text,cardModel: cards[index]),));
                   },
                    // Handle your callback
                   child: Container(
