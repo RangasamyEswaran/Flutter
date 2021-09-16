@@ -1,9 +1,14 @@
 import 'package:cording/payment/transfer/phonetran.dart';
 import 'package:flutter/material.dart';
 
-class Cardno extends StatelessWidget {
+class Cardno extends StatefulWidget {
   const Cardno({Key? key}) : super(key: key);
 
+  @override
+  State<Cardno> createState() => _CardnoState();
+}
+
+class _CardnoState extends State<Cardno> {
   @override
   Widget build(BuildContext context) {
     return Column(

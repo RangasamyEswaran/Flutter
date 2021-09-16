@@ -1,11 +1,7 @@
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:cording/home.dart';
-import 'package:cording/payment/transfer/card.dart';
-import 'package:cording/payment/transfer/phone.dart';
-import 'package:cording/payment/transfer/qrscan.dart';
 import 'package:flutter/material.dart';
-import 'package:quick_actions/quick_actions.dart';
 class Start extends StatefulWidget {
   Start({Key? key}) : super(key: key);
 
@@ -15,7 +11,7 @@ class Start extends StatefulWidget {
 
 class _StartState extends State<Start> {
 
-  final QuickActions quickActions = QuickActions();
+  
 
   
 
@@ -23,30 +19,11 @@ class _StartState extends State<Start> {
   void initState(){
     super.initState();
     initTimer();
-    quickActions.setShortcutItems(
-      [
-        ShortcutItem(type: 'qrcode', localizedTitle: 'QR Scan', icon: 'qrcode'),
-        ShortcutItem(type: 'phone', localizedTitle: 'Phone no', icon: 'phone'),
-        ShortcutItem(type: 'card', localizedTitle: 'Card no', icon: 'card'),
-      ]
-    );
-    quickActions.initialize((type) {
-      if(type=='qrcode'){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Qrscan()));
-      }else if(type == 'phone'){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Phone()));
-      }else if(type == 'card'){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Cardno()));
-      }
-     });
+    
   }
 
   void initTimer()async{
     if (await checkinternet()) {
-    //   Timer(Duration(seconds: 2), 
-    //     (){
-    //         Navigator.push(context,  MaterialPageRoute(builder: (context) => Home()));
-    // });
     Timer(Duration(seconds: 2), (){
       Navigator.pushAndRemoveUntil(context,  MaterialPageRoute<void>(builder: (BuildContext context) => Home()), (route) => false);
     });
@@ -79,30 +56,7 @@ if (connectivityResult==ConnectivityResult.mobile||connectivityResult==Connectiv
         ),
         child: FutureBuilder(
           future: checkinternet(),
-          builder: (BuildContext c, snap){
-        //     if (snap.data==null) {
-        //       return Center(
-        //   child: Column(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: [
-        //       Text('The App is Starting',
-        //       style: TextStyle(
-        //         color: Colors.white,
-        //         fontWeight: FontWeight.w600,
-        //         fontSize: 20
-        //       ),
-        //       ),
-        //       SizedBox(
-        //         height: 20,
-        //       ),
-        //       CircularProgressIndicator(
-        //         valueColor: AlwaysStoppedAnimation(Colors.white),
-        //       )
-              
-        //     ],
-        //   ),
-        // );
-        //     } else 
+          builder: (BuildContext context, snap){
             if(snap.data==true){
               return Center(
           child: Column(
